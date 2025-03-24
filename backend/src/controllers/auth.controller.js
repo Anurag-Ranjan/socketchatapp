@@ -6,9 +6,11 @@ import cloudinary from "../lib/cloudinary.js";
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
   try {
+    // console.log("Done");
     if (fullName.length == 0 || email.length == 0) {
       return res.status(400).json({ message: "All fields are required" });
     }
+    // console.log("done");
     if (password.length < 6) {
       return res
         .status(400)
@@ -92,6 +94,7 @@ export const logout = (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { profilePicture } = req.body;
+    // console.log(profilePicture);
     const userId = req.user._id;
     if (!profilePicture) {
       return res.status(400).json({ message: "No profile picture" });
@@ -116,6 +119,6 @@ export const checkAuth = async (req, res) => {
     res.status(200).json(req.user);
   } catch (error) {
     console.log("Error in the checkAuth conrtroller");
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
-};///will be called whenever the page is refreshed on the frontend
+}; ///will be called whenever the page is refreshed on the frontend
